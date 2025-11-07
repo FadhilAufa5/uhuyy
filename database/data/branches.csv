@@ -1,0 +1,53 @@
+﻿code,cost_center,name,manager_name,admin_head_name,address,phone,account_name,account_no
+3000,3000AA00,KANTOR PUSAT,,,"Jl. Budi Utomo No. 1 Jakarta Pusat, DKI Jakarta, 10710",21,,
+3168,3168CP00,UNIT BISNIS AMBON,apt. Afiff Maralla,,"Jl. Diponegoro No. 66 Ahusen Sirimau, Sirimau, Maluku, 97125",21,MANDIRI KANTOR PUSAT KEA,1860005240961
+3102,3102AB00,UNIT BISNIS BALIKPAPAN,apt. Made Nugraha Kusurnajaya M.M,M. Alfian Nur,"Jl. Jend. Achmad Yani No. 95 Gunung Sari, Balikpapan Tengah, Kalimantan Timur, 0",321,PASIF,1490092034653
+3101,3101AA00,UNIT BISNIS BANDA ACEH,,,"Jl. Diponegoro No. 8 Kel. Gampong B, Baiturrahman, Aceh,",0651-21559,MANDIRI,1580000164772
+3103,3103AC00,UNIT BISNIS BANDUNG,Hendri Susanto,Dian Hardiansyah. S.Ak.,"Jl. Cihampelas No. 7. Cicendo, Jawa Barat, 40171",022-87804760,Mandiri,1300092032120
+3169,3169CQ00,UNIT BISNIS BANGKA BELITUNG,Miftahul rozak,,"Jl. Jend. A. Yani No. 96, Tamansari, Kep. Bangka Belitung, 33121",21,MANDIRI KANTOR PUSAT KFA,1690003902506
+3107,3107AG00,UNIT BISNIS BANJARMASIN,"apt. Gema Yulan Dahnis,",Bahrul Ilmi,"Jln. Veteran No. 51 B, Banjarmasin Tengah, Kalünantan Selatan, O",5113267113,MANDIRI,310000121916
+3108,3108AH00,UNIT BISNIS BATAM,"apt Drs. Heri Sumanto, MM",Eko Junaedi,"Jl. Jend. Sudirman Batam Centre - Batam, Riau, Batam Kota. Kep. Riau, 29461",0778-461415,Bank Mandiri,1090002522704
+3110,3110AJ00,UNIT BISNIS BEKASI,"Drs. Hermanta Tarigan, M.Si, Apt.",Rohim,"Cluster Emerald Commercial Blok UA/019, RT.004/RW.011, Summarecon, Bekasi Utara, Jawa Barat, 17143",(021) 89467983,MANDIRI,1560006875191
+3112,3112AL00,UNIT BISNIS BOGOR,apt. Yandi S.Si,Aris Wachyuningsih,"Jl. Ir. H. Juanda No. 30, Kota Bogor Tengah, Jawa Barat, 16122",0251-8363473,MANDIR PASIF,1330089003826
+3148,3148BV00,UNIT BISNIS CILEGON,"apt. Drs. Wawan Ruwandi, MM",Gandha Anugrah R,"Jl. DI Panjaitan Pagebangan, Cilegon, Banten, Cilegon, Banten, 42416",0254-392278,MANDIRI,1630001317950
+3114,3114AN00,UNIT BISNIS CIREBON,apt.Usman M Noor Alala S.Farm,Didi Suhyadi,"Jl. Parujakan No. 12, Kota Cirebon, Jawa Barat, Pekalipan, Jawa Barat, 45118",0231-208954,MANDIRI PASIF,1340090002022
+3116,3116AP00,UNIT BISNIS DENPASAR,,,"Jl. Diponegoro No-125, Denpasar, Bali, Denpasar Barat, Bali, 80114",0361-227522,MANDIRI,1450080000108
+3113,3113AM00,UNIT BISNIS DEPOK,"apt. Ahmad Alwy, S. Farm",,"Jl. Nusantara Raya No. 33, Pancoran Mas, Jawa Barat, 16432",021-77211438,MANDIRI,1570009000143
+3126,3126AZ00,UNIT BISNIS GORONTALO,,,,,,
+3144,3144BR00,UNIT BISNIS GRESIK,apt. Hendri Fatriona. S.Farm,"Nanda Marga Rema Cindy Pujiharto, SA","Jl. DR Wahidin SH, Green Garden Regency A2-5. Gresik, Jawa Timur, Kebomas, Jawa Timur, 61122",031-3986989,MANDIRI - PASIF,1400014544481
+3133,3133BG00,UNIT BISNIS JAMBI,apt. Rumail Amadia S. Farm,Barhaya. AMd. Farm.,"Jl. SKRD Syahbudin No. 50, Alam Barajo, Jambi, 11324",0741-5912040,Bank Mandiri,1100000226222
+3117,3117AQ00,UNIT BISNIS JAYA I,"apt.Ricky Usdanil Marpaung, S. Farm","Eko Budi Harsono, SE","Jl. Sultan Hasanuddin No. 1 Kebayoran Baru Jakarta Selatan, Kebayoran Baru, DKI Jakarta, 12830",021-8581824,MANDIRI PASIF,1260004430673
+3118,3118AR00,UNIT BISNIS JAYA II,"apt. Friencky Michael, S. Farm",,"Jl. Pahlawan Revolusi No.53, Duren Sawit, OKI Jakarta, 13470",021-8615154,BANK MANDIRI PASIF,60089664415
+3119,3119AS00,UNIT BISNIS JAYAPURA,"apt. Samsuri, S.Farm",Adriani Li Iku,"Jl. Kesehatan Dok II, Komp. RSUD Dok II, , Papua, O",0967-523464,MANDIRI,1540005768456
+3120,3120AT00,UNIT BISNIS JEMBER,"apt. Muhammad Firmansyah Thabrony, SFarm","Purnomowati, SE","Jl. Gajah Mada No. 171, Jember, Jawa Timur, Kaliwates, Jawa Timur, 68131",0331-485424,Mandiri St. Agung Jember,1430086000062
+3111,3111AK00,UNIT BISNIS KARAWANG,"apt. Afiika Aditya Septiantoro, S.Farm",Ervina Fitriani.S.KM.MM,"Jl. Dewi Sartika II No. 30, Karawang, Jawa Barat, Karawang Barat, Jawa Barat, 41311",0267-86401682,MANDIRI PASIF KARAWANG,1730060060069
+3121,3121AU00,UNIT BISNIS KENDARI,apt. Ria Andriany Amin. S.Si,"Faisal, S. Farm","Jl. Mayjend S Parman No. 82. Kendari Barat Sulawesi Tenggara, 123456",8119148732,Mandiri,1520005573098
+3122,3122AV00,UNIT BISNIS KUPANG,"apt. Jeplin Karo Karo, S.Farm",,"JL Moh_ Hatta No. 34 Kupang, Kota Raja, Nusa Tenggara Timur, O",21,MANDIRI PASIF,1450090011491
+3123,3123AW00,UNIT BISNIS LAMPUNG,"apt. Dolly Martha,S.Farm","Darwis Effendi, SE","Jl. Kartini No. 44-45, Bandar Lampung Lampung, Tanjung Karang Pusat, Lampung, 35116",0721-262991,MANDIRI PASIF,1140004650647
+3171,3171CS00,UNIT BISNIS MADURA,apt. Adnan Azhari,,"Jl. Joko Tole No. 5 Bangkalan. Madura. Jawa Timur, Bangkalan, Jawa Timur, 69111",21,MANDIRI KANTOR PUSAT KA,1420000005594
+3124,3124AX00,UNIT BISNIS MAKASSAR,apt. Ratno Setiawan. S.Farm,,"Jl. Jend. A. Yani No. 17 - 19, Wajo, Sulawesi Selatan, 0",,MANDIR PASIF,1520091018248
+3125,312SAY00,UNIT BISNIS MALANG,apt. Wisnu Dwigus Sanyoto S.Farm,"Endro Dwi Santoso , SE.","Jl.Tumenggung Suryo No. 25, Malang, Jawa Timur, Blimbing, Jawa Timur, 65122",0341-491074,PT. Kimia Farma Apotek,1440006091091
+3127,3127BA00,UNIT BISNIS MANADO,apt. Mochammad Yusuf Fauzie. S.Si,,"Jl. Sam Ratulangi No. 31, Wenang, Sulawesi Utara, O",321,mandiri pasif,1500095016364
+3129,3129BC00,UNIT BISNIS MATARAM,"apt. Febri Iskandar Samosir, S.Farm.","Muhammad Awalul Dani., S.Kom","Jl. Sriwijaya No. 295 Mataram, Mataram, Nusa Tenggara Barat",321,Bank Mandiri,1450005932328
+3130,3130BO00,UNIT BISNIS MEDAN,"apt. Chandra Emitza, SS.",Aminulham Nasution,"Jl. Palang Merah No. 32, Medan Barat, Sumatera Utara, 20111",061-4576023,MANDIRI PASIF MEDAN,1060094042952
+3115,3115AO00,UNIT BISNIS NUSADUA,"apt. Danang Tjandra Atmadja, MM",Ketut Yudi Hermanta,"Jl. By Pass Ngurah Rai No. 890, Badung - Nusa Dua, Bali, Kuta Selatan, Bali, 80361",0361-4773778,BANK MANDIRI,1750099998907
+3131,3131BE00,UNIT BISNIS PADANG,,,"Jl. Perintis Kemerdekaan No. 24, Padang, Sumatera Barat, Padang Panjang Barat. Sumatera Barat, 25129",0751-24685,MANDIRI,1110004529737
+3132,3132BF00,UNIT BISNIS PALANGKARAYA,Imam,Muhammad Yunus,"Jl. Diponegoro No. 8, Pahandut, Kalimantan Tengah",0536-3224082,MANDIRI,310086012138
+3134,3134BH00,UNIT BISNIS PALEMBANG,apt. Eerly Suryafiarma S.Farm,Yulii,"Jl. Kol. Atrno No. 1250, Palembang Sumatera Selatan, Ilir Timur II, Sumatera Selatan, 30125",0711-312091,Mandiri Cab Sudirman,1120000026695
+3135,3135BI00,UNIT BISNIS PALU,"apt. Tri cahyono, S.Farm.","Mohe Nur, S.E","Jl. Veteran No. 93 Palu, Mantikulore, Sulawesi Tengah, 94234",0451-4014015,MANDIR,1510023000331
+3140,3140BN00,UNIT BISNIS PEKALONGAN,"apt. Immanuel Saut Raja Partogi Purba, S.Farm.",Dwi Cahya Setiaji,"Jl. Imam Bonjol No.32, Pekalongan, Jawa Tengah. Pekalongan Barat, Jawa Tengah. 51113",0285-4498966,MANDIRI,1390016315503
+3136,3136BJ00,UNIT BISNIS PEKANBARU,"apt Rizeka Mugrib Muhammad,S-Farm","Resha Dwi Arisa,SE","Jl. Jend. Sudirman No. 175, Pekanbaru, Riau, Pekanbaru Kota, Riau, 28282",0761-855670,MANDIRI PASIF,1080005489100
+3137,3137BK00,UNIT BISNIS PONTIANAK,"apt. Eko Ramadhani.,S.Farm",Eko Setiawan,"Jl. Tanjung Pura No. 419, Pontianak Selatan, Kalimantan Barat, 78122",0561-731658,MANDIRI PASIF,1460091016985
+3170,3170CR00,UNIT BISNIS PURWOKERTO,Agus Sudarmanto,Agus Sudarmanto,"Jl. Jend. Sudirman No. 435, Purwokerto Selatan, Jawa Tengah, 53147",21,MANDIRI KANTOR PUSAT KA,1190003027685
+3139,3139BM00,UNIT BISNIS SAMARINDA,"apt. Resta Andria, M. Farm",Juhari,"Jl. M. Yamin (Ruko M. Yamin Square No. 6), Samarinda Ulu, Kalimantan Timur, 75123",0811SS83929,Mandiri,1480010361973
+3141,3141BO00,UNIT BISNIS SEMARANG,,,"Jl. Pemuda No. 135, Semarang. Jawa Tengah, Semarang Tengah. Jawa Tengah, 50132",024-3518913,MANDIR] PASIF,1350091077519
+3145,3145BS00,UNIT BISNIS SIDOARJO,apt. Widia Rahmi Mulyanis. S.Farm.,"Abdul Muchid, S.Ak","Perum Deltasari No. 10-11 Sidoarjo, Waru, Jawa Timur, 61256",031-8535529,MANDIRI,1410014383699
+3143,3143BQ00,UNIT BISNIS SORONG,"apt. Banu Aji Wijayanto, S.Farm","Sitti M. Hardiningsih, SH.","Jl. Jend. Sudirman No. 1, , Papua Barat, 98414",21,MANDIRI,1540000243588
+3147,3147BU00,UNIT BISNIS SUKABUMI,"apt. Drs. Aji Sutarmaji, S.Farm",Mai Ahroni,"JL Veteran II No. 2, Sukabumi, Cikole, Jawa Barat, 43114",0266-224251,MANDIRI PASIF,1190007735002
+3146,3146BT00,UNIT BISNIS SURABAYA,"apt, Drs. Nisamuddin",Suyanto,"Jl. Raya Darmo No. 2-4, Surabaya. Jawa Timur, Kenjeran, Jawa Timur, 60264",031-5678559,Bank Mandiri Cab. Diponegoro. Surabaya,1420000005594
+3142,3142BP00,UNIT BISNIS SURAKARTA,,,"Jl. Kol. Sutarto No. 57, Jebres, Jawa Tengah, O",21,Mandiri,1380005106088
+3149,3149BW00,UNIT BISNIS TANGERANG,apt. Drs. Muhammad Hilmi MM,Melia Lllfah Bahari A.Md Farm,"Jl. Raya Serpong Sektor VII BSD Blok RP No. 92, Tangerang Selatan, Banten, Serpong Utara, Banten, 15""",021-5377910,MANDIRI PASIF,1180004787726
+3109,3109AI00,UNIT BISNIS TANJONG PINANG,"apt. Relung Rea Keusuma, S.Farm",,"Jl. Bintan No. 656-658,Tanjung Pinang, Riau, Tanjung Pinang Kota, Kep. Riau, 29111",0771-21091,MANDIRI CAB TANJUNGPINANG,1090014591713
+3105,3105AE00,UNIT BISNIS TASIKMALAYA,"apt. Opik Taupik, S.Si.",Yusup Supriadi. Amd. Kom,"Jl. HZ Mustapa No. 108 Tasikmalaya, Jawa Barat, Rajapolah. Jawa Barat, 46155",0265-330430,MANDIRI PASIF,1310012458677
+3128,3128BE00,UNIT BISNIS TERNATE,apt. Glocesdo Togar Hasiholan Tamba. S. Farm.,M. Yamin,"Jl. Hasan Esa No. 151 , Ternate Tengah, Maluku Utara, 0",0921 3126399,Mandiri,1500010919858
+3150,3150BX00,UNIT BISNIS YOGYA,apt. Drs. Yuni Asman,"Anfi Gunawan, S.E","Jl. Laksda Adisucipto No. 63A, Ambarukmo, Depok, Sleman, Kotagede, DI Yogyakarta, 55271",0274-588098,"MANDIRI CAB SUDIRMAN YOGYA a,'n PT. KIMIA FARMA APOTEK",1370086000292
