@@ -12,6 +12,16 @@ class Logout
      */
     public function __invoke()
     {
+        $user = Auth::user();
+        
+        // Log logout activity before logging out
+        if ($user) {
+            \App\Traits\LogsActivity::logCustomActivity(
+                'logged_out',
+                $user->name . ' logged out from the system'
+            );
+        }
+
         Auth::guard('web')->logout();
 
         Session::invalidate();

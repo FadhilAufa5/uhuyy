@@ -18,9 +18,9 @@
                     </flux:button>
                 </flux:modal.trigger>
 
-                <flux:button variant="ghost" icon="download" href="{{ route('users.export') }}" class="border-gray-300 dark:border-zinc-600">
+                {{-- <flux:button variant="ghost" icon="download" href="{{ route('users.export') }}" class="border-gray-300 dark:border-zinc-600">
                     Export
-                </flux:button>
+                </flux:button> --}}
             </div>
         @endif
         @if(count($checked)>1)
@@ -88,7 +88,6 @@
                                  {{-- :direction="$sortField === 'branch_name' ? $sortDirection : null">Unit --}}
                 {{-- </x-table.heading> --}}
                 <x-table.heading>Role</x-table.heading>
-                <x-table.heading>Permissions</x-table.heading>
                 <x-table.heading>Status</x-table.heading>
                 <x-table.heading sortable wire:click="sortBy('users.updated_at')"
                                  :direction="$sortField === 'users.updated_at' ? $sortDirection : null">Last Update
@@ -121,27 +120,6 @@
                         {{-- <x-table.cell>{{ $user->branch_name ?? null }}</x-table.cell> --}}
                         <x-table.cell>{{ \App\Enums\Roles::labels()[$user->getRoleNames()->first()] ?? null }}</x-table.cell>
                         <x-table.cell>
-                            <div class="flex items-center gap-0.5">
-                                <flux:badge
-                                    class="rounded-l-full">{{ $user->getAllPermissions()->pluck('name')->count() . ' permissions' }}</flux:badge>
-                                <flux:tooltip>
-                                    <flux:icon.badge-info class="size-4"/>
-                                    <flux:tooltip.content
-                                        class="max-w-[20rem] space-y-2 !bg-zinc-50/90 dark:!bg-zinc-700/90">
-                                        <flux:heading>{{ $user->name . '\'s Permissions'}}</flux:heading>
-                                        @forelse($user->getAllPermissions()->pluck('name') as $permission)
-                                            <flux:badge class="text-xs">
-                                                {{ $permission }}
-                                            </flux:badge>
-                                        @empty
-                                            <flux:subheading class="text-zinc-400">No Permissions Assigned!
-                                            </flux:subheading>
-                                        @endforelse
-                                    </flux:tooltip.content>
-                                </flux:tooltip>
-                            </div>
-                        </x-table.cell>
-                        <x-table.cell>
                             <div class="flex-col items-center">
                                 @php
                                     $session = $this->sessions->firstWhere('user_id', $user->id);
@@ -170,13 +148,6 @@
                                         <flux:modal.trigger name="edit-roles"
                                                             wire:click="$dispatch('loadUser', { id: {{ $user->id }} })">
                                             <flux:menu.item icon="academic-cap" class="cursor-pointer">Update Role
-                                            </flux:menu.item>
-                                        </flux:modal.trigger>
-                                    @endcan
-                                    @can(\App\Enums\Permissions::ManagePermissions->value)
-                                        <flux:modal.trigger name="edit-permissions"
-                                                            wire:click="$dispatch('loadUser', { id: {{ $user->id }} })">
-                                            <flux:menu.item icon="key" class="cursor-pointer">Update Permissions
                                             </flux:menu.item>
                                         </flux:modal.trigger>
                                     @endcan
@@ -239,7 +210,6 @@
     {{-- modals --}}
     <livewire:users.create/>
     <livewire:users.edit-roles/>
-    <livewire:users.edit-permissions/>
     <livewire:delete-modal/>
     <livewire:switch-modal/>
 </div>

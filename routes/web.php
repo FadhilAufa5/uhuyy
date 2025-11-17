@@ -23,6 +23,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->name('users.export');
     });
 
+    Route::middleware('role:' . Roles::SuperAdmin->value)->group(function () {
+        Volt::route('activity-logs', 'activity-logs.index')->name('activity-logs.index');
+    });
+
     Route::middleware('can:' . Permissions::ManageDepartments->value)->group(function () {
         Volt::route('branches', 'branches.index')->name('branches.index');
         Route::get('branches-export', fn() => Excel::download(new UserExport, 'branches.xlsx'))

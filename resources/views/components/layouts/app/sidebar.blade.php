@@ -31,6 +31,12 @@
                     Users
                 </flux:navlist.item>
             @endcan
+
+            @hasrole(App\Enums\Roles::SuperAdmin->value)
+                <flux:navlist.item icon="clipboard-document-list" href="{{ route('activity-logs.index') }}" :current="Request::is('activity-logs')" wire:navigate>
+                    Activity Logs
+                </flux:navlist.item>
+            @endhasrole
         </flux:navlist>
 
         <flux:spacer />

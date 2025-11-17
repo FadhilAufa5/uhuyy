@@ -44,6 +44,17 @@ new class extends Component {
             'status'    => 'aktif',
         ]);
 
+        // Log upload activity
+        \App\Traits\LogsActivity::logCustomActivity(
+            'uploaded',
+            'Uploaded branch document: ' . $originalName,
+            [
+                'branch_id' => $branch->id,
+                'file_name' => $originalName,
+                'file_path' => $filePath,
+            ]
+        );
+
         // Kirim job ke queue
         ConvertPdfToJpgJob::dispatch($branch);
 

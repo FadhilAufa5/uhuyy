@@ -1,39 +1,35 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen bg-white antialiased dark:bg-linear-to-b dark:from-neutral-950 dark:to-neutral-900">
-        <div class="relative grid h-dvh flex-col items-center justify-center px-8 sm:px-0 lg:max-w-none lg:grid-cols-2 lg:px-0">
-            <div class="bg-muted relative hidden h-full flex-col p-10 text-white lg:flex dark:border-e dark:border-neutral-800">
-                <div class="absolute inset-0 bg-neutral-900"></div>
-                <a href="{{ route('home') }}" class="relative z-20 flex items-center text-lg font-medium" wire:navigate>
-                    <span class="flex h-10 w-10 items-center justify-center rounded-md">
-                        <x-app-logo-icon class="me-2 h-7 fill-current text-white" />
-                    </span>
-                    {{ config('app.name', 'Laravel') }}
+    <body class="min-h-screen bg-white antialiased dark:bg-zinc-950 transition-colors duration-200">
+        <div class="relative grid h-dvh lg:grid-cols-2">
+            <!-- Left Panel - Image -->
+            <div class="relative hidden lg:block">
+                <img 
+                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
+                    alt="Background" 
+                    class="absolute inset-0 h-full w-full object-cover"
+                />
+                <div class="absolute inset-0 bg-black/30 dark:bg-black/50"></div>
+                
+                <a href="{{ route('home') }}" class="absolute top-10 left-10 flex items-center gap-3 text-white z-10" wire:navigate>
+                    <x-app-logo-icon class="h-10 fill-current drop-shadow-lg" />
                 </a>
-
-                @php
-                    [$message, $author] = str(Illuminate\Foundation\Inspiring::quotes()->random())->explode('-');
-                @endphp
-
-                <div class="relative z-20 mt-auto">
-                    <blockquote class="space-y-2">
-                        <flux:heading size="lg">&ldquo;{{ trim($message) }}&rdquo;</flux:heading>
-                        <footer><flux:heading>{{ trim($author) }}</flux:heading></footer>
-                    </blockquote>
-                </div>
             </div>
-            <div class="w-full lg:p-8">
-                <div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-                    <a href="{{ route('home') }}" class="z-20 flex flex-col items-center gap-2 font-medium lg:hidden" wire:navigate>
-                        <span class="flex h-9 w-9 items-center justify-center rounded-md">
-                            <x-app-logo-icon class="size-9 fill-current text-black dark:text-white" />
-                        </span>
+            
+            <!-- Right Panel - Form -->
+            <div class="flex items-center justify-center p-6 bg-white dark:bg-zinc-950 transition-colors duration-200">
+                <div class="w-full max-w-[380px]">
+                    <!-- Dark Mode Toggle -->
+                 
 
-                        <span class="sr-only">{{ config('app.name', 'Laravel') }}</span>
+                    <a href="{{ route('home') }}" class="flex items-center justify-center gap-3 mb-10 lg:hidden" wire:navigate>
+                        <x-app-logo-icon class="h-10 fill-current text-gray-900 dark:text-white" />
+                        <span class="font-semibold text-xl text-gray-900 dark:text-white">{{ config('app.name') }}</span>
                     </a>
+                    
                     {{ $slot }}
                 </div>
             </div>

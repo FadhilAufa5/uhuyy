@@ -17,7 +17,7 @@ new class extends Component {
     {
         $this->form->setUser($user);
 
-        $this->roles = Role::all();
+        $this->roles = Role::whereIn('name', ['User', 'Admin'])->get();
     }
 
     #[On('loadUser')]
@@ -30,7 +30,7 @@ new class extends Component {
         }
         $this->selectedRole = $this->user?->getRoleNames()->first();
 
-        $this->roles = Role::all();
+        $this->roles = Role::whereIn('name', ['User', 'Admin'])->get();
     }
 
     public function save(): void
