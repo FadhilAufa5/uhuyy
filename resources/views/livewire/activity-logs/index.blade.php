@@ -69,17 +69,23 @@ new #[Layout('components.layouts.app'), Title('Activity Logs')] class extends Co
     }
 }; ?>
 
-<div class="p-6 bg-white dark:bg-zinc-800 rounded-xl shadow-lg border border-gray-200 dark:border-zinc-700 transition-colors duration-200">
-    <!-- Header -->
-    <div class="mb-6">
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-            </svg>
-            Activity Logs
-        </h2>
-        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Monitor all system activities and user actions</p>
-    </div>
+<div>
+    <!-- Breadcrumbs -->
+    <livewire:breadcrumbs :items="[
+        ['href' => route('activity-logs.index'), 'label' => 'Activity Logs']
+    ]" />
+
+    <div class="p-6 bg-white dark:bg-zinc-800 rounded-xl shadow-lg border border-gray-200 dark:border-zinc-700 transition-colors duration-200">
+        <!-- Header -->
+        <div class="mb-6">
+            <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                </svg>
+                Activity Logs
+            </h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Monitor all system activities and user actions</p>
+        </div>
 
     <!-- Filters -->
     <div class="mb-6 grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -112,11 +118,11 @@ new #[Layout('components.layouts.app'), Title('Activity Logs')] class extends Co
     </div>
 
     @if($search || $eventFilter || $userFilter)
-        <div class="mb-4 flex items-center justify-between p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-            <span class="text-sm text-blue-800 dark:text-blue-300">
+        <div class="mb-4 flex items-center justify-between p-2 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+            <span class="text-xs text-blue-800 dark:text-blue-300">
                 Filters active
             </span>
-            <flux:button size="sm" variant="ghost" wire:click="clearFilters">
+            <flux:button size="xs" variant="ghost" wire:click="clearFilters">
                 Clear All
             </flux:button>
         </div>
@@ -143,15 +149,15 @@ new #[Layout('components.layouts.app'), Title('Activity Logs')] class extends Co
                         <x-table.cell>
                             <div class="flex items-center gap-2">
                                 @if($log->user)
-                                    <img class="size-8 rounded-full bg-zinc-100 dark:bg-zinc-500" 
+                                    <img class="size-7 rounded-full bg-zinc-100 dark:bg-zinc-500" 
                                          src="" 
                                          alt="{{ $log->user->initials() }}" />
                                     <div>
-                                        <div class="text-sm font-semibold">{{ $log->user->name }}</div>
-                                        <div class="text-xs text-zinc-500 dark:text-zinc-400">{{ $log->user->email }}</div>
+                                        <div class="text-xs font-semibold">{{ $log->user->name }}</div>
+                                        <div class="text-[10px] text-zinc-500 dark:text-zinc-400">{{ $log->user->email }}</div>
                                     </div>
                                 @else
-                                    <div class="text-sm text-zinc-500 dark:text-zinc-400">
+                                    <div class="text-xs text-zinc-500 dark:text-zinc-400">
                                         {{ $log->user_name ?? 'System' }}
                                     </div>
                                 @endif
@@ -159,35 +165,35 @@ new #[Layout('components.layouts.app'), Title('Activity Logs')] class extends Co
                         </x-table.cell>
                         
                         <x-table.cell>
-                            <flux:badge :color="$log->event_badge_color" :icon="$log->event_icon">
+                            <flux:badge size="sm" :color="$log->event_badge_color" :icon="$log->event_icon">
                                 {{ ucfirst($log->event) }}
                             </flux:badge>
                         </x-table.cell>
                         
                         <x-table.cell>
-                            <span class="text-sm font-medium">{{ $log->model_name }}</span>
+                            <span class="text-xs font-medium">{{ $log->model_name }}</span>
                             @if($log->model_id)
-                                <span class="text-xs text-zinc-500">#{{ $log->model_id }}</span>
+                                <span class="text-[10px] text-zinc-500">#{{ $log->model_id }}</span>
                             @endif
                         </x-table.cell>
                         
                         <x-table.cell>
-                            <div class="text-sm">{{ $log->description }}</div>
+                            <div class="text-xs">{{ $log->description }}</div>
                         </x-table.cell>
                         
                         <x-table.cell>
-                            <span class="text-xs font-mono text-zinc-600 dark:text-zinc-400">{{ $log->ip_address }}</span>
+                            <span class="text-[10px] font-mono text-zinc-600 dark:text-zinc-400">{{ $log->ip_address }}</span>
                         </x-table.cell>
                         
                         <x-table.cell>
-                            <div class="text-sm">{{ $log->created_at->diffForHumans() }}</div>
-                            <div class="text-xs text-zinc-500">{{ $log->created_at->format('d M Y H:i') }}</div>
+                            <div class="text-xs">{{ $log->created_at->diffForHumans() }}</div>
+                            <div class="text-[10px] text-zinc-500">{{ $log->created_at->format('d M Y H:i') }}</div>
                         </x-table.cell>
                         
                         <x-table.cell>
                             @if($log->properties)
                                 <flux:modal.trigger name="log-details-{{ $log->id }}">
-                                    <flux:button size="sm" variant="ghost" icon="eye">
+                                    <flux:button size="xs" variant="ghost" icon="eye">
                                         View
                                     </flux:button>
                                 </flux:modal.trigger>
@@ -247,11 +253,11 @@ new #[Layout('components.layouts.app'), Title('Activity Logs')] class extends Co
                 @empty
                     <tr>
                         <td colspan="8" class="text-center py-8 text-zinc-500 bg-zinc-50 dark:bg-zinc-700">
-                            <svg class="w-16 h-16 mx-auto mb-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-12 h-12 mx-auto mb-3 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
                             </svg>
-                            <p class="font-medium">No activity logs found</p>
-                            <p class="text-sm mt-1">Activities will appear here once users start interacting with the system</p>
+                            <p class="text-sm font-medium">No activity logs found</p>
+                            <p class="text-xs mt-1">Activities will appear here once users start interacting with the system</p>
                         </td>
                     </tr>
                 @endforelse
@@ -259,19 +265,20 @@ new #[Layout('components.layouts.app'), Title('Activity Logs')] class extends Co
         </x-table.index>
     </div>
 
-    <!-- Pagination -->
-    <div class="flex flex-wrap items-center justify-between py-4 space-y-4 flex-column md:flex-row md:space-y-0">
-        <div wire:model.live="perPage" class="flex gap-2 items-center">
-            <label for="perPage">per Page:</label>
-            <select id="perPage" class="border px-2 py-1 border-zinc-300 dark:border-zinc-500 dark:bg-zinc-700 rounded">
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>
-        </div>
-        <div>
-            {{ $logs->links('simple-pagination', data: ['scrollTo' => false]) }}
+        <!-- Pagination -->
+        <div class="flex flex-wrap items-center justify-between py-4 space-y-4 flex-column md:flex-row md:space-y-0">
+            <div wire:model.live="perPage" class="flex gap-2 items-center">
+                <label for="perPage" class="text-xs">per Page:</label>
+                <select id="perPage" class="border px-2 py-1 text-xs border-zinc-300 dark:border-zinc-500 dark:bg-zinc-700 rounded">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+            <div>
+                {{ $logs->links('simple-pagination', data: ['scrollTo' => false]) }}
+            </div>
         </div>
     </div>
 </div>
