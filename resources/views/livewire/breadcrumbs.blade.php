@@ -22,8 +22,6 @@ new class extends Component {
 
                 <flux:navmenu>
                     <flux:navmenu.item href="{{ route('dashboard') }}">Dashboard</flux:navmenu.item>
-                    @can(\App\Enums\Permissions::ListVendors->value)
-                    @endcan
                    
                     @can(\App\Enums\Permissions::ManageDepartments->value)
                         <flux:navmenu.item href="{{ route('branches.index') }}">Data Management</flux:navmenu.item>

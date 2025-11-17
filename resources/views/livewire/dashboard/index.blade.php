@@ -7,7 +7,6 @@ new #[Layout('components.layouts.app', ['title' => 'Dashboard'])] class extends 
 }; ?>
 
 <div>
-    @unlessrole(\App\Enums\Roles::Vendor->value)
     <livewire:breadcrumbs :items="[
         ['href' => route('dashboard'), 'label' => 'Dashboard']
     ]" />
@@ -27,12 +26,4 @@ new #[Layout('components.layouts.app', ['title' => 'Dashboard'])] class extends 
         </div>
 
     </div>
-    @endunlessrole
-
-    @hasrole(\App\Enums\Roles::Vendor->value)
-    <div class="w-full mx-auto">
-        <flux:heading size="xl" class="mx-auto my-6 text-zinc-800 dark:text-zinc-50 text-center">Procurement News</flux:heading>
-        @livewire('news')
-    </div>
-    @endhasrole
 </div>

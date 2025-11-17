@@ -87,7 +87,7 @@ new class extends Component {
                 <flux:input label="Password Confirmation" type="password" viewable
                             wire:model="form.password_confirmation"/>
             @endif
-            @if(!$user?->hasRole(\App\Enums\Roles::Vendor->value))
+            
 {{--                <livewire:search-dropdown--}}
 {{--                    :key="'search-dropdown-'.now()" --}}{{-- avoid double render --}}
 {{--                    :selected="$user?->branch?->id" --}}{{-- pass id to child component --}}
@@ -98,8 +98,6 @@ new class extends Component {
                     <option value="IT">IT</option>
                     <option value="Manager Operasional">Manager Operasional</option>
                 </flux:select> --}}
-
-            @endif
         </div>
 
         <div class="flex gap-2">

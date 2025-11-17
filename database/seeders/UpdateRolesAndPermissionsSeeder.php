@@ -21,14 +21,14 @@ class UpdateRolesAndPermissionsSeeder extends Seeder
             PermissionEnum::ManageRoles->value,
             PermissionEnum::ManagePermissions->value,
             PermissionEnum::ManageDepartments->value,
-            PermissionEnum::ListVendors->value,
-            PermissionEnum::CreateVendors->value,
-            PermissionEnum::EditVendors->value,
-            PermissionEnum::DeleteVendors->value,
             PermissionEnum::ListAssets->value,
             PermissionEnum::CreateAssets->value,
             PermissionEnum::EditAssets->value,
             PermissionEnum::DeleteAssets->value,
+            PermissionEnum::ListProcurements->value,
+            PermissionEnum::CreateProcurements->value,
+            PermissionEnum::EditProcurements->value,
+            PermissionEnum::DeleteProcurements->value,
         ];
 
         foreach ($permissions as $permission) {
@@ -46,16 +46,8 @@ class UpdateRolesAndPermissionsSeeder extends Seeder
             PermissionEnum::ManageDepartments->value, // Access to branches & apoteks
         ]);
 
-        // Vendor role (keep existing)
-        $vendorRole = Role::firstOrCreate(['name' => Roles::Vendor->value]);
-        // Vendors have their own specific permissions, don't change
-
-        // Delete old Manager role if exists
-        Role::where('name', 'manager')->delete();
-
         $this->command->info('✅ Roles and Permissions updated successfully!');
         $this->command->info('   - Super Admin: Full access to all features');
         $this->command->info('   - User: Access to Dashboard & Data Management only');
-        $this->command->info('   - Vendor: Vendor-specific permissions');
     }
 }

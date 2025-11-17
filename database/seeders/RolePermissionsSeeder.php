@@ -36,30 +36,6 @@ class RolePermissionsSeeder extends Seeder
                     Permissions::ManagePermissions->value,
                     Permissions::ManageDepartments->value,
 
-                    Permissions::ListVendors->value,
-                    Permissions::CreateVendors->value,
-                    Permissions::EditVendors->value,
-                    Permissions::DeleteVendors->value,
-
-                    Permissions::ListAssets->value,
-                    Permissions::CreateAssets->value,
-                    Permissions::EditAssets->value,
-                    Permissions::DeleteAssets->value,
-
-                    Permissions::ListProcurements->value,
-                    Permissions::CreateProcurements->value,
-                    Permissions::EditProcurements->value,
-                    Permissions::DeleteProcurements->value,
-                ];
-                break;
-            case Roles::Manager->value:
-                $permissions = [
-                    Permissions::ManageDepartments->value,
-                    Permissions::ListVendors->value,
-                    Permissions::CreateVendors->value,
-                    Permissions::EditVendors->value,
-                    Permissions::DeleteVendors->value,
-
                     Permissions::ListAssets->value,
                     Permissions::CreateAssets->value,
                     Permissions::EditAssets->value,
@@ -73,17 +49,7 @@ class RolePermissionsSeeder extends Seeder
                 break;
             case Roles::User->value:
                 $permissions = [
-                    Permissions::ListVendors->value,
-                    Permissions::CreateVendors->value,
-                    Permissions::EditVendors->value,
-
-                    Permissions::ListAssets->value,
-                    Permissions::CreateAssets->value,
-                    Permissions::EditAssets->value,
-
-                    Permissions::ListProcurements->value,
-                    Permissions::CreateProcurements->value,
-                    Permissions::EditProcurements->value,
+                    Permissions::ManageDepartments->value,
                 ];
                 break;
         }

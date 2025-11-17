@@ -13,7 +13,7 @@ new class extends Component {
                     <x-slot:head>
                         <x-table.heading class="px-5 py-3">Announcement Date</x-table.heading>
                         <x-table.heading class="px-5 py-3">Procurement Name</x-table.heading>
-                        <x-table.heading class="px-5 py-3">Selected Vendor</x-table.heading>
+                        <x-table.heading class="px-5 py-3">Winner</x-table.heading>
                     </x-slot:head>
                     <x-slot:body>
                         <x-table.row :even="true">
