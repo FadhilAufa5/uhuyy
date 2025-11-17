@@ -6,7 +6,7 @@
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.0-38bdf8?logo=tailwindcss)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-Sistem manajemen terintegrasi untuk mengelola users, vendors, assets, dan branches dengan fitur activity logging, role-based access control, dan optimasi performa tinggi.
+Sistem manajemen terintegrasi untuk mengelola users, assets, dan branches dengan fitur activity logging, role-based access control, dan optimasi performa tinggi.
 
 ## 📋 Table of Contents
 
@@ -29,7 +29,6 @@ Sistem manajemen terintegrasi untuk mengelola users, vendors, assets, dan branch
 
 ### Core Features
 - 👥 **User Management** - Comprehensive user management dengan role-based permissions
-- 🏢 **Vendor Management** - Self-registration vendors dengan approval system
 - 📦 **Asset Management** - Track dan kelola company assets
 - 🏪 **Branch (Apotek) Management** - Manage multiple branches/outlets
 - 📊 **Activity Log System** - Automatic logging untuk semua user activities
@@ -223,30 +222,17 @@ Password: password
 User:
 Email: user@example.com
 Password: password
-
-Vendor:
-Email: vendor@example.com
-Password: password
 ```
 
 ### Module Access
 
-| Module | SuperAdmin | Admin | User | Vendor |
-|--------|-----------|-------|------|---------|
-| Dashboard | ✅ | ✅ | ✅ | ✅ |
-| User Management | ✅ | ✅ | ❌ | ❌ |
-| Vendor Management | ✅ | ✅ | ❌ | ❌ |
-| Asset Management | ✅ | ✅ | ❌ | ❌ |
-| Branch Management | ✅ | ✅ | ❌ | ❌ |
-| Activity Logs | ✅ | ❌ | ❌ | ❌ |
-| Vendor Settings | ❌ | ❌ | ❌ | ✅ |
-
-### Vendor Self-Registration
-
-Vendors dapat mendaftar sendiri melalui:
-```
-http://localhost:8000/register-vendor
-```
+| Module | SuperAdmin | Admin | User |
+|--------|-----------|-------|------|
+| Dashboard | ✅ | ✅ | ✅ |
+| User Management | ✅ | ✅ | ❌ |
+| Asset Management | ✅ | ✅ | ❌ |
+| Branch Management | ✅ | ✅ | ❌ |
+| Activity Logs | ✅ | ❌ | ❌ |
 
 ### Activity Logs
 
@@ -270,7 +256,7 @@ Akses: **SuperAdmin only** via menu "Activity Logs"
 
 #### 2. Admin
 - Manage users (non-SuperAdmin)
-- Manage vendors, assets, branches
+- Manage assets, branches
 - Export data
 - Cannot view activity logs
 
@@ -278,13 +264,6 @@ Akses: **SuperAdmin only** via menu "Activity Logs"
 - Limited access
 - View own profile
 - Settings access only
-
-#### 4. Vendor
-- Self-register via public form
-- Manage own vendor profile
-- Upload documents
-- Bank details management
-- Company information
 
 ### Permissions
 
@@ -296,12 +275,6 @@ Permissions::ManagePermissions
 
 // Department/Branch Management
 Permissions::ManageDepartments
-
-// Vendor Management
-Permissions::ListVendors
-Permissions::CreateVendors
-Permissions::EditVendors
-Permissions::DeleteVendors
 
 // Asset Management
 Permissions::ListAssets
@@ -327,12 +300,10 @@ kfa_hl/
 │   ├── Livewire/                   # Livewire components
 │   │   ├── BaseTableComponent.php  # Base class untuk tables
 │   │   ├── Users/                  # User management components
-│   │   ├── Vendors/                # Vendor management
 │   │   ├── Assets/                 # Asset management
 │   │   └── ActivityLogs/           # Activity log viewer
 │   ├── Models/                     # Eloquent models
 │   │   ├── User.php
-│   │   ├── Vendor.php
 │   │   ├── Asset.php
 │   │   ├── Branch.php
 │   │   └── ActivityLog.php
