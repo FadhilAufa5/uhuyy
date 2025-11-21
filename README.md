@@ -754,4 +754,4 @@ php artisan queue:listen
 
 ---
 
-**Made with ❤️ using Laravel & Livewire**
+**Made with ❤️ using detoouhuy**

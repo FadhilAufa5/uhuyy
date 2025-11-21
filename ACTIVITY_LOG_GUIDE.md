@@ -217,11 +217,7 @@ Pastikan column `properties` di database menggunakan type `json`
 - Details (button untuk view modal)
 
 ### Modal Details
-- User info
-- Event type badge
-- IP Address & exact timestamp
-- Properties dalam JSON format
-- User Agent string
+ 
 
 ## Security Notes
 

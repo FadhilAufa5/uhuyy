@@ -1,4 +1,4 @@
-<div class="w-full">
+<div class="w-full" wire:poll.2s="checkForUpdates">
     @if($branch && $branch->file_path && Storage::disk('public')->exists($branch->file_path))
         <!-- Hero with Active Branch Document -->
         <div class="relative bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-zinc-800 dark:to-zinc-900 rounded-2xl shadow-xl overflow-hidden border border-blue-200 dark:border-zinc-700 transition-all duration-300">

@@ -8,11 +8,14 @@ use Livewire\Attributes\Title;
 
 new #[Layout('components.layouts.app'), Title('Activity Logs')] class extends Component {
     use WithPagination;
+    use \App\Helpers\WithToast;
 
     public $search = '';
     public $eventFilter = '';
     public $userFilter = '';
     public $perPage = 25;
+    public $selectedLogs = [];
+    public $selectAll = false;
 
     public function with(): array
     {
@@ -66,6 +69,42 @@ new #[Layout('components.layouts.app'), Title('Activity Logs')] class extends Co
         $this->eventFilter = '';
         $this->userFilter = '';
         $this->resetPage();
+    }
+
+    public function deleteLog($logId): void
+    {
+        $log = ActivityLog::find($logId);
+        
+        if (!$log) {
+            $this->toast('Log not found', 'error');
+            return;
+        }
+
+        $log->delete();
+        $this->toast('Activity log deleted successfully', 'success');
+    }
+
+    public function deleteSelected(): void
+    {
+        if (empty($this->selectedLogs)) {
+            $this->toast('No logs selected', 'warning');
+            return;
+        }
+
+        $count = ActivityLog::whereIn('id', $this->selectedLogs)->delete();
+        $this->selectedLogs = [];
+        $this->selectAll = false;
+        
+        $this->toast("{$count} activity log(s) deleted successfully", 'success');
+    }
+
+    public function updatedSelectAll($value): void
+    {
+        if ($value) {
+            $this->selectedLogs = ActivityLog::pluck('id')->toArray();
+        } else {
+            $this->selectedLogs = [];
+        }
     }
 }; ?>
 
@@ -128,10 +167,34 @@ new #[Layout('components.layouts.app'), Title('Activity Logs')] class extends Co
         </div>
     @endif
 
+    <!-- Bulk Actions -->
+    @if(count($selectedLogs) > 0)
+        <div class="mb-4 flex items-center justify-between p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+            <span class="text-xs text-red-800 dark:text-red-300 font-medium">
+                {{ count($selectedLogs) }} log(s) selected
+            </span>
+            <flux:button 
+                size="xs" 
+                variant="danger" 
+                icon="trash"
+                wire:click="deleteSelected"
+                wire:confirm="Are you sure you want to delete the selected logs? This action cannot be undone.">
+                Delete Selected
+            </flux:button>
+        </div>
+    @endif
+
     <!-- Table -->
     <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-zinc-700">
         <x-table.index>
             <x-slot name="head">
+                <x-table.heading class="w-1">
+                    <input 
+                        type="checkbox" 
+                        wire:model.live="selectAll"
+                        class="rounded border-zinc-300 dark:border-zinc-600 text-blue-600 focus:ring-blue-500 dark:bg-zinc-700"
+                    />
+                </x-table.heading>
                 <x-table.heading>#</x-table.heading>
                 <x-table.heading>User</x-table.heading>
                 <x-table.heading>Event</x-table.heading>
@@ -140,10 +203,19 @@ new #[Layout('components.layouts.app'), Title('Activity Logs')] class extends Co
                 <x-table.heading>IP Address</x-table.heading>
                 <x-table.heading>Time</x-table.heading>
                 <x-table.heading>Details</x-table.heading>
+                <x-table.heading>Actions</x-table.heading>
             </x-slot>
             <x-slot name="body">
                 @forelse($logs as $log)
                     <x-table.row :even="$loop->even" wire:key="log-{{ $log->id }}">
+                        <x-table.cell class="w-1">
+                            <input 
+                                type="checkbox" 
+                                wire:model.live="selectedLogs"
+                                value="{{ $log->id }}"
+                                class="rounded border-zinc-300 dark:border-zinc-600 text-blue-600 focus:ring-blue-500 dark:bg-zinc-700"
+                            />
+                        </x-table.cell>
                         <x-table.cell index class="w-1">{{ $logs->firstItem() + $loop->index }}</x-table.cell>
                         
                         <x-table.cell>
@@ -249,10 +321,21 @@ new #[Layout('components.layouts.app'), Title('Activity Logs')] class extends Co
                                 <span class="text-xs text-zinc-400">-</span>
                             @endif
                         </x-table.cell>
+                        
+                        <x-table.cell>
+                            <flux:button 
+                                size="xs" 
+                                variant="danger" 
+                                icon="trash"
+                                wire:click="deleteLog({{ $log->id }})"
+                                wire:confirm="Are you sure you want to delete this activity log? This action cannot be undone.">
+                                Delete
+                            </flux:button>
+                        </x-table.cell>
                     </x-table.row>
                 @empty
                     <tr>
-                        <td colspan="8" class="text-center py-8 text-zinc-500 bg-zinc-50 dark:bg-zinc-700">
+                        <td colspan="10" class="text-center py-8 text-zinc-500 bg-zinc-50 dark:bg-zinc-700">
                             <svg class="w-12 h-12 mx-auto mb-3 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
                             </svg>

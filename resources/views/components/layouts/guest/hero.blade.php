@@ -2,6 +2,7 @@
 use App\Services\ImageCleanupService;
 
 $branches = \App\Models\Branch::where('status', 'aktif')
+    ->where('conversion_status', 'selesai')
     ->orderByDesc('created_at')
     ->get(); 
 
@@ -107,6 +108,42 @@ foreach ($branches as $branch) {
 <!-- SwiperJS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+<style>
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .fade-in-image {
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .swiper-slide img {
+        opacity: 0;
+        transition: opacity 0.8s ease-in-out;
+    }
+
+    .swiper-slide-active img,
+    .swiper-slide-duplicate-active img {
+        opacity: 1;
+    }
+
+    /* Fade-in untuk fullscreen modal */
+    .fullscreen-swiper .swiper-slide img {
+        opacity: 0;
+        transition: opacity 0.8s ease-in-out;
+    }
+
+    .fullscreen-swiper .swiper-slide-active img,
+    .fullscreen-swiper .swiper-slide-duplicate-active img {
+        opacity: 1;
+    }
+</style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {

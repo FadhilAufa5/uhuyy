@@ -28,86 +28,78 @@ class ConvertPdfToJpgJob implements ShouldQueue
         try {
             $filePath = storage_path('app/public/' . $this->branch->file_path);
             $baseFileName = pathinfo($filePath, PATHINFO_FILENAME);
-            $saveDir = storage_path('app/public/branches/');
 
             if (!file_exists($filePath)) {
                 throw new \Exception("PDF file not found: " . $filePath);
             }
 
-            if (!is_dir($saveDir)) {
-                mkdir($saveDir, 0755, true);
-            }
+            $startTime = microtime(true);
 
-            $imagePaths = [];
-
-            // Konversi PDF ke PNG menggunakan Imagick
+            // OPTIMIZED: Convert directly to base64 without disk writes
             $imagick = new \Imagick();
-            $imagick->setResolution(200, 200);
+            $imagick->setResolution(150, 150); // Reduced from 200 to 150 DPI for faster processing
             $imagick->readImage($filePath);
 
+            $imagesDataForDb = [];
+            $storageSize = 0;
+
             foreach ($imagick as $index => $page) {
-                $page->setImageFormat('png');
-                $imageFileName = "{$baseFileName}_page_" . ($index + 1) . ".png";
-                $imageFullPath = $saveDir . $imageFileName;
-                $page->writeImage($imageFullPath);
-                $imagePaths[] = "branches/" . $imageFileName;
+                // Use JPG format with compression for smaller file sizes
+                $page->setImageFormat('jpg');
+                $page->setImageCompressionQuality(85); // Good balance between quality and size
+                
+                // Get image blob directly without writing to disk
+                $imageBlob = $page->getImageBlob();
+                $blobSize = strlen($imageBlob);
+                
+                // Convert directly to base64
+                $base64Data = base64_encode($imageBlob);
+                
+                $imagesDataForDb[] = [
+                    'filename' => "{$baseFileName}_page_" . ($index + 1) . ".jpg",
+                    'mime' => 'image/jpeg',
+                    'size' => $blobSize,
+                    'data' => $base64Data,
+                ];
+                
+                $storageSize += $blobSize;
             }
 
             $imagick->clear();
             $imagick->destroy();
 
-            // Convert images to base64 for database storage
-            $imagesDataForDb = [];
-            $storageSize = 0;
-
-            foreach ($imagePaths as $imagePath) {
-                $fullImagePath = storage_path('app/public/' . $imagePath);
-                try {
-                    $imageData = ImageCleanupService::fileToBase64($fullImagePath);
-                    $imagesDataForDb[] = [
-                        'filename' => $imageData['filename'],
-                        'mime' => $imageData['mime'],
-                        'size' => $imageData['size'],
-                        'data' => $imageData['data'],
-                    ];
-                    $storageSize += $imageData['size'];
-                } catch (\Exception $e) {
-                    \Log::error("Failed to convert image to base64: {$e->getMessage()}");
-                }
-            }
-
-            // Update database dengan images di database dan paths untuk backward compatibility
+            // Update database dengan images di database
             $this->branch->update([
-                'images_data'       => json_encode($imagesDataForDb), // Store in database
-                'image_gallery'     => json_encode($imagePaths),      // Keep for backward compatibility
-                'image_path'        => $imagePaths[0] ?? null,        // Keep for backward compatibility
+                'images_data'       => json_encode($imagesDataForDb),
+                'image_gallery'     => null, // No longer needed
+                'image_path'        => null, // No longer needed
                 'conversion_status' => 'selesai',
             ]);
 
+            $processingTime = round(microtime(true) - $startTime, 2);
+
             // Log conversion stats
             $pdfSize = PdfCleanupService::getFileSizeFormatted($this->branch->file_path);
-            \Log::info("📄 PDF conversion completed", [
+            \Log::info("📄 PDF conversion completed (OPTIMIZED)", [
                 'branch_id' => $this->branch->id,
                 'file_name' => basename($this->branch->file_path),
                 'pdf_size' => $pdfSize,
-                'pages_converted' => count($imagePaths),
-                'images_in_database' => count($imagesDataForDb),
+                'pages_converted' => count($imagesDataForDb),
                 'database_size' => ImageCleanupService::formatBytes($storageSize),
-            ]);
-
-            // Auto-delete images from storage after saving to database
-            $deleteStats = ImageCleanupService::deleteImagesAfterDatabaseSave($imagePaths);
-            
-            \Log::info("🗑️ Images cleanup completed", [
-                'deleted_files' => $deleteStats['deleted'],
-                'storage_freed' => ImageCleanupService::formatBytes($deleteStats['total_size_freed']),
+                'processing_time' => "{$processingTime}s",
             ]);
 
             // Auto-delete PDF setelah konversi berhasil
             PdfCleanupService::deletePdfAfterConversion($this->branch->file_path);
 
+            // Dispatch event untuk refresh UI
+            event(new \App\Events\BranchConversionCompleted($this->branch));
+            
+            // Set cache flag untuk trigger refresh
+            \Cache::put('branch_conversion_completed_' . $this->branch->user_id, time(), 60);
+
         } catch (\Exception $e) {
-            \Log::error("Gagal konversi PDF ke PNG untuk Branch ID {$this->branch->id}: " . $e->getMessage());
+            \Log::error("Gagal konversi PDF ke JPG untuk Branch ID {$this->branch->id}: " . $e->getMessage());
 
             $this->branch->update([
                 'conversion_status' => 'gagal',
