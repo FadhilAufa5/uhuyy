@@ -14,7 +14,7 @@ class BranchForm extends Form
     public function rules(): array
     {
         return [
-            'file_path' => 'required|file|mimes:pdf|max:10240', // max 10MB
+            'file_path' => 'required|file|mimes:pdf|max:20480', // max 20MB (20480 KB)
         ];
     }
 }

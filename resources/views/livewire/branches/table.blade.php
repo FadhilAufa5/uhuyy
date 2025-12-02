@@ -4,8 +4,22 @@
             </style>
 
             <div class="p-6 bg-white dark:bg-zinc-800 rounded-xl shadow-lg border border-gray-200 dark:border-zinc-700 transition-colors duration-200" 
-                wire:poll.2s="checkForUpdates"
-                @if($hasProcessingBranches) wire:poll.1s @endif>
+                wire:poll.{{ $pollingInterval }}ms="checkForUpdates">
+                {{-- Processing Indicator --}}
+                @if($hasProcessingBranches)
+                    <div class="mb-4 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-400 rounded-lg flex items-center gap-3">
+                        <svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <div class="flex-1">
+                            <span class="font-medium">Sedang memproses file...</span>
+                            <p class="text-xs mt-0.5 opacity-80">Halaman akan otomatis refresh ketika konversi selesai</p>
+                        </div>
+                        <span class="text-xs bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded">Auto-refresh aktif</span>
+                    </div>
+                @endif
+
                 {{-- Flash Message --}}
                 @if (session()->has('message'))
                     <div x-data="{ show: true }" 

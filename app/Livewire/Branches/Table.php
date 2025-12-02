@@ -15,10 +15,12 @@ class Table extends Component
     use WithPagination;
     
     public $lastRefreshCheck = 0;
+    public $pollingInterval = 5000; // milliseconds
 
     public function mount()
     {
         $this->lastRefreshCheck = time();
+        $this->updatePollingInterval();
     }
 
     public function checkForUpdates()
@@ -29,9 +31,24 @@ class Table extends Component
         if ($conversionTime && $conversionTime > $this->lastRefreshCheck) {
             $this->lastRefreshCheck = time();
             Cache::forget($cacheKey);
-            $this->dispatch('$refresh');
-            session()->flash('message', 'File conversion completed successfully!');
+            session()->flash('message', 'Konversi file berhasil diselesaikan!');
+            
+            // Trigger full refresh
+            $this->resetPage();
         }
+        
+        // Update polling interval based on processing status
+        $this->updatePollingInterval();
+    }
+
+    protected function updatePollingInterval()
+    {
+        $hasProcessing = Branch::where('user_id', auth()->id())
+            ->where('conversion_status', 'proses')
+            ->exists();
+        
+        // Fast polling (1s) if processing, slow polling (5s) if idle
+        $this->pollingInterval = $hasProcessing ? 1000 : 5000;
     }
 
     public function toggleStatus($branchId)

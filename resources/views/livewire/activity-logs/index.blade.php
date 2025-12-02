@@ -19,7 +19,10 @@ new #[Layout('components.layouts.app'), Title('Activity Logs')] class extends Co
 
     public function with(): array
     {
-        $query = ActivityLog::with('user')
+        // Optimize query: Use scopes for better performance and memory usage
+        $query = ActivityLog::optimized()
+            ->recent(90) // Limit to last 90 days for performance
+            ->with(['user:id,name,email']) // Select specific columns from user relation
             ->orderBy('created_at', 'desc');
 
         // Search
@@ -43,8 +46,11 @@ new #[Layout('components.layouts.app'), Title('Activity Logs')] class extends Co
 
         return [
             'logs' => $query->paginate($this->perPage),
-            'users' => \App\Models\User::select('id', 'name')->get(),
-            'events' => ActivityLog::distinct()->pluck('event'),
+            'users' => \App\Models\User::select('id', 'name')->orderBy('name')->get(),
+            'events' => ActivityLog::where('created_at', '>=', now()->subDays(90))
+                ->distinct()
+                ->pluck('event')
+                ->sort(),
         ];
     }
 
