@@ -1100,7 +1100,7 @@ php -m | grep imagick
 
 ---
 
-**Made with ❤️ by Development Team**
+**Made with ❤️ by detohuy**
 
 **Powered by:**
 - Laravel 12 • Livewire 3 • Flux UI • TailwindCSS • Vite
