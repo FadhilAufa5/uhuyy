@@ -35,9 +35,9 @@ class ConvertPdfToJpgJob implements ShouldQueue
 
             $startTime = microtime(true);
 
-            // OPTIMIZED: Convert directly to base64 without disk writes
+          
             $imagick = new \Imagick();
-            $imagick->setResolution(150, 150); // Reduced from 200 to 150 DPI for faster processing
+            $imagick->setResolution(150, 150); 
             $imagick->readImage($filePath);
 
             $imagesDataForDb = [];

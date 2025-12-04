@@ -2,7 +2,7 @@
     <!-- Header Section -->
     <div class="mb-6">
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white">User Management</h2>
-        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Manage system users and their permissions</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Manage system users and their permissions roles</p>
     </div>
 
     <!-- Action Bar -->
@@ -18,9 +18,7 @@
                     </flux:button>
                 </flux:modal.trigger>
 
-                {{-- <flux:button variant="ghost" icon="download" href="{{ route('users.export') }}" class="border-gray-300 dark:border-zinc-600">
-                    Export
-                </flux:button> --}}
+                
             </div>
         @endif
         @if(count($checked)>1)
@@ -84,9 +82,7 @@
                 <x-table.heading sortable wire:click="sortBy('users.name')"
                                  :direction="$sortField === 'users.name' ? $sortDirection : null">Nama
                 </x-table.heading>
-                {{-- <x-table.heading sortable wire:click="sortBy('branch_name')" --}}
-                                 {{-- :direction="$sortField === 'branch_name' ? $sortDirection : null">Unit --}}
-                {{-- </x-table.heading> --}}
+              
                 <x-table.heading>Role</x-table.heading>
                 <x-table.heading>Status</x-table.heading>
                 <x-table.heading sortable wire:click="sortBy('users.updated_at')"
@@ -117,7 +113,7 @@
                                 </div>
                             </div>
                         </x-table.cell>
-                        {{-- <x-table.cell>{{ $user->branch_name ?? null }}</x-table.cell> --}}
+                       
                         <x-table.cell>{{ \App\Enums\Roles::labels()[$user->getRoleNames()->first()] ?? null }}</x-table.cell>
                         <x-table.cell>
                             <div class="flex-col items-center">
